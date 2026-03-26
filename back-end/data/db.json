@@ -1,0 +1,260 @@
+{
+  "users": [
+    {
+      "id": 1774524224879,
+      "name": "Test User",
+      "email": "testuser@example.com",
+      "password": "secret123"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Candle P1",
+      "price": 24,
+      "description": "Hand-poured candle from the P1 collection.",
+      "image": "/pr/p1.jpg",
+      "details": {
+        "burnTime": "45 hours",
+        "wax": "Soy blend",
+        "size": "220g",
+        "notes": "Rose petals, vanilla, white tea"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Candle P2",
+      "price": 25,
+      "description": "Hand-poured candle from the P2 collection.",
+      "image": "/pr/p2.jpg",
+      "details": {
+        "burnTime": "48 hours",
+        "wax": "Soy blend",
+        "size": "230g",
+        "notes": "Cedarwood, amber, musk"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Candle P3",
+      "price": 26,
+      "description": "Hand-poured candle from the P3 collection.",
+      "image": "/pr/p3.jpg",
+      "details": {
+        "burnTime": "50 hours",
+        "wax": "Coconut soy",
+        "size": "240g",
+        "notes": "Orange zest, neroli, mint"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Candle P4",
+      "price": 23,
+      "description": "Hand-poured candle from the P4 collection.",
+      "image": "/pr/p4.jpg",
+      "details": {
+        "burnTime": "40 hours",
+        "wax": "Soy blend",
+        "size": "210g",
+        "notes": "Cotton flower, fresh linen"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Candle P5",
+      "price": 28,
+      "description": "Hand-poured candle from the P5 collection.",
+      "image": "/pr/p5.jpg",
+      "details": {
+        "burnTime": "55 hours",
+        "wax": "Coconut soy",
+        "size": "250g",
+        "notes": "Fig leaf, sandalwood, tonka"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Candle P6",
+      "price": 29,
+      "description": "Hand-poured candle from the P6 collection.",
+      "image": "/pr/p6.jpg",
+      "details": {
+        "burnTime": "58 hours",
+        "wax": "Soy blend",
+        "size": "260g",
+        "notes": "Coffee bean, cacao, caramel"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Candle P7",
+      "price": 22,
+      "description": "Hand-poured candle from the P7 collection.",
+      "image": "/pr/p7.jpg",
+      "details": {
+        "burnTime": "42 hours",
+        "wax": "Soy blend",
+        "size": "205g",
+        "notes": "Lavender, sage, chamomile"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Candle P8",
+      "price": 30,
+      "description": "Hand-poured candle from the P8 collection.",
+      "image": "/pr/p8.jpg",
+      "details": {
+        "burnTime": "60 hours",
+        "wax": "Coconut soy",
+        "size": "270g",
+        "notes": "Oud, patchouli, black pepper"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Candle P9",
+      "price": 27,
+      "description": "Hand-poured candle from the P9 collection.",
+      "image": "/pr/p9.jpg",
+      "details": {
+        "burnTime": "52 hours",
+        "wax": "Soy blend",
+        "size": "245g",
+        "notes": "Jasmine, pear, soft musk"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Candle P10",
+      "price": 31,
+      "description": "Hand-poured candle from the P10 collection.",
+      "image": "/pr/p10.jpg",
+      "details": {
+        "burnTime": "62 hours",
+        "wax": "Coconut soy",
+        "size": "280g",
+        "notes": "Vanilla bean, praline, cedar"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Candle P11",
+      "price": 26,
+      "description": "Hand-poured candle from the P11 collection.",
+      "image": "/pr/p11.jpg",
+      "details": {
+        "burnTime": "46 hours",
+        "wax": "Soy blend",
+        "size": "225g",
+        "notes": "Honey, almond, soft rose"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Candle P12",
+      "price": 33,
+      "description": "Hand-poured candle from the P12 collection.",
+      "image": "/pr/p12.jpg",
+      "details": {
+        "burnTime": "64 hours",
+        "wax": "Coconut soy",
+        "size": "290g",
+        "notes": "Mahogany, spice, vanilla cream"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Candle P13",
+      "price": 25,
+      "description": "Hand-poured candle from the P13 collection.",
+      "image": "/pr/p13.jpg",
+      "details": {
+        "burnTime": "47 hours",
+        "wax": "Soy blend",
+        "size": "230g",
+        "notes": "Cedar leaf, musk, tonka"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Candle P14",
+      "price": 35,
+      "description": "Hand-poured candle from the P14 collection.",
+      "image": "/pr/p14.jpg",
+      "details": {
+        "burnTime": "68 hours",
+        "wax": "Coconut soy",
+        "size": "300g",
+        "notes": "Amber, suede, clove"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Candle P15",
+      "price": 29,
+      "description": "Hand-poured candle from the P15 collection.",
+      "image": "/pr/p15.jpg",
+      "details": {
+        "burnTime": "54 hours",
+        "wax": "Soy blend",
+        "size": "255g",
+        "notes": "Citrus peel, cedar bark, warm vanilla"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Candle P16",
+      "price": 34,
+      "description": "Hand-poured candle from the P16 collection.",
+      "image": "/pr/p16.jpg",
+      "details": {
+        "burnTime": "66 hours",
+        "wax": "Coconut soy",
+        "size": "295g",
+        "notes": "Cocoa, cedar, dark vanilla"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Candle P17",
+      "price": 32,
+      "description": "Hand-poured candle from the P17 collection.",
+      "image": "/pr/p17.jpg",
+      "details": {
+        "burnTime": "61 hours",
+        "wax": "Soy blend",
+        "size": "285g",
+        "notes": "Wild berry, amber, cashmere"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Candle P18",
+      "price": 36,
+      "description": "Hand-poured candle from the P18 collection.",
+      "image": "/pr/p18.jpg",
+      "details": {
+        "burnTime": "70 hours",
+        "wax": "Coconut soy",
+        "size": "310g",
+        "notes": "Spiced chai, sandalwood, sweet musk"
+      }
+    }
+  ],
+  "carts": [
+    {
+      "userId": 1774524224879,
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "name": "Candle P1",
+          "price": 24,
+          "image": "/pr/p1.jpg"
+        }
+      ]
+    }
+  ]
+}
