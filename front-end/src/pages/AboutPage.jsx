@@ -3,7 +3,7 @@ function AboutPage() {
     <main className="page-body">
       <section className="about section-wrap">
         <div className="section-head">
-          <p className="eyebrow">Why Candels</p>
+          <p className="eyebrow">Why sam's candels</p>
           <h2>Made with care from start to finish</h2>
         </div>
         <div className="about-grid">

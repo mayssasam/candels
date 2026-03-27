@@ -60,7 +60,7 @@ function SignupPage({ onSignupSuccess }) {
         <article className="auth-card">
           <p className="eyebrow">Create account</p>
           <h1>Sign Up</h1>
-          <p className="auth-subtitle">Join Candels and start shopping your favorite fragrances.</p>
+          <p className="auth-subtitle">Join sam's candels and start shopping your favorite fragrances.</p>
 
           <form className="auth-form" onSubmit={onSubmit}>
             <input name="name" type="text" placeholder="Full name" value={formData.name} onChange={onChange} />

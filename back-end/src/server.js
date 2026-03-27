@@ -9,7 +9,7 @@ app.use(cors({ origin: ['http://localhost:5173'] }))
 app.use(express.json())
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'candels-api' })
+  res.json({ ok: true, service: "sam's cabdels-api" })
 })
 
 app.post('/api/auth/signup', (req, res) => {
@@ -160,5 +160,5 @@ app.delete('/api/cart/:userId/items/:productId', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Candels API running on http://localhost:${PORT}`)
+  console.log(`sam's cabdels API running on http://localhost:${PORT}`)
 })
