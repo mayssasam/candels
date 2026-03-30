@@ -1,4 +1,5 @@
 const CART_KEY = 'candels_cart'
+const API_BASE_URL = 'http://localhost:4000/api'
 
 export function getCartItems() {
   const raw = localStorage.getItem(CART_KEY)
@@ -16,7 +17,52 @@ export function saveCartItems(items) {
   localStorage.setItem(CART_KEY, JSON.stringify(items))
 }
 
-export function addCartItem(product) {
+export async function getCartItemsForUser(userId) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/cart/${userId}`)
+    if (!response.ok) {
+      return []
+    }
+
+    const payload = await response.json()
+    return (payload.items || []).map((item) => ({
+      id: item.productId,
+      name: item.name,
+      price: `${item.price} DT`,
+      image: item.image,
+      quantity: item.quantity,
+    }))
+  } catch {
+    return []
+  }
+}
+
+export async function addCartItem(product, userId) {
+  if (userId) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/cart/${userId}/add`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: product.id }),
+      })
+
+      if (!response.ok) {
+        return getCartItems()
+      }
+
+      const payload = await response.json()
+      return (payload.items || []).map((item) => ({
+        id: item.productId,
+        name: item.name,
+        price: `${item.price} DT`,
+        image: item.image,
+        quantity: item.quantity,
+      }))
+    } catch {
+      return getCartItems()
+    }
+  }
+
   const cart = getCartItems()
   const existing = cart.find((item) => item.id === product.id)
 
@@ -43,7 +89,30 @@ export function addCartItem(product) {
   return updated
 }
 
-export function removeCartItem(productId) {
+export async function removeCartItem(productId, userId) {
+  if (userId) {
+    try {
+      const response = await fetch(`${API_BASE_URL}/cart/${userId}/items/${productId}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        return getCartItems()
+      }
+
+      const payload = await response.json()
+      return (payload.items || []).map((item) => ({
+        id: item.productId,
+        name: item.name,
+        price: `${item.price} DT`,
+        image: item.image,
+        quantity: item.quantity,
+      }))
+    } catch {
+      return getCartItems()
+    }
+  }
+
   const updated = getCartItems().filter((item) => item.id !== productId)
   saveCartItems(updated)
   return updated

@@ -16,10 +16,14 @@ function HomePage() {
             <Link to="/contact" className="btn btn-ghost">Contact Us</Link>
           </div>
         </div>
-        <div className="hero-card" aria-label="Featured candle">
-          <h3>Featured: Vanilla Amber</h3>
-          <p>Soft vanilla, amber wood, and warm musk.</p>
-          <span>Burn time: 50 hours</span>
+        <div className="hero-card hero-video-card" aria-label="Candle video preview">
+          <video className="hero-video" autoPlay muted loop playsInline>
+            <source src="/pr/cand.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-video-caption">
+            <h3>Candle Mood</h3>
+            <p>Soft pink and warm light ambience.</p>
+          </div>
         </div>
       </section>
     </main>

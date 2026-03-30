@@ -17,7 +17,7 @@ function SignupPage({ onSignupSuccess }) {
     setFormData((previous) => ({ ...previous, [name]: value }))
   }
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault()
 
     if (!formData.name || !formData.email || !formData.password) {
@@ -35,7 +35,7 @@ function SignupPage({ onSignupSuccess }) {
       return
     }
 
-    const result = registerUser({
+    const result = await registerUser({
       name: formData.name,
       email: formData.email,
       password: formData.password,
@@ -47,7 +47,7 @@ function SignupPage({ onSignupSuccess }) {
     }
 
     setFeedback({ type: 'success', message: result.message })
-    loginUser({ email: formData.email, password: formData.password })
+    await loginUser({ email: formData.email, password: formData.password })
     if (onSignupSuccess) {
       onSignupSuccess()
     }

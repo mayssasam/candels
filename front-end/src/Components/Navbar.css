@@ -5,6 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  animation: navbarDrop 0.55s ease both;
 }
 
 .navbar-container {
@@ -42,6 +43,7 @@
   height: 60px;
   width: auto;
   transition: transform 0.3s ease;
+  animation: logoFloat 3.2s ease-in-out infinite;
 }
 
 .logo:hover {
@@ -57,6 +59,23 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-16deg);
+  transition: left 0.45s ease;
+}
+
+.nav-link:hover::before {
+  left: 120%;
 }
 
 .nav-link:hover {
@@ -102,6 +121,83 @@
   border-radius: 999px;
   padding: 0.45rem 0.8rem;
   white-space: nowrap;
+  animation: navItemFade 0.5s ease both;
+}
+
+.nav-left > *,
+.nav-right > * {
+  animation: navItemFade 0.45s ease both;
+}
+
+.nav-left > *:nth-child(1),
+.nav-right > *:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.nav-left > *:nth-child(2),
+.nav-right > *:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.nav-left > *:nth-child(3),
+.nav-right > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.nav-logo {
+  animation: navItemFade 0.5s ease both;
+  animation-delay: 0.12s;
+}
+
+@keyframes navbarDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes navItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .nav-left > *,
+  .nav-right > *,
+  .nav-logo,
+  .logo,
+  .user-pill {
+    animation: none !important;
+  }
+
+  .nav-link,
+  .nav-link::before,
+  .nav-link::after {
+    transition: none !important;
+  }
 }
 
 /* Responsive design */

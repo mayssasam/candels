@@ -5,11 +5,16 @@ const { readDb, writeDb } = require('./db')
 const app = express()
 const PORT = process.env.PORT || 4000
 
+function toPositiveInteger(value, fallback) {
+  const parsed = Number.parseInt(value, 10)
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback
+}
+
 app.use(cors({ origin: ['http://localhost:5173'] }))
 app.use(express.json())
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: "sam's cabdels-api" })
+  res.json({ ok: true, service: "sam's-candels-api" })
 })
 
 app.post('/api/auth/signup', (req, res) => {
@@ -81,9 +86,62 @@ app.post('/api/auth/login', (req, res) => {
   })
 })
 
-app.get('/api/products', (_req, res) => {
+app.get('/api/products', (req, res) => {
   const db = readDb()
-  res.json({ ok: true, products: db.products })
+  const query = String(req.query.q || '').trim().toLowerCase()
+  const minPrice = Number(req.query.minPrice)
+  const maxPrice = Number(req.query.maxPrice)
+  const sort = String(req.query.sort || 'default')
+  const page = toPositiveInteger(req.query.page, 1)
+  const limit = toPositiveInteger(req.query.limit, db.products.length || 1)
+
+  let products = [...db.products]
+
+  if (query) {
+    products = products.filter((product) => {
+      const notes = String(product?.details?.notes || '')
+      return (
+        String(product.name).toLowerCase().includes(query)
+        || String(product.description).toLowerCase().includes(query)
+        || notes.toLowerCase().includes(query)
+      )
+    })
+  }
+
+  if (!Number.isNaN(minPrice)) {
+    products = products.filter((product) => Number(product.price) >= minPrice)
+  }
+
+  if (!Number.isNaN(maxPrice)) {
+    products = products.filter((product) => Number(product.price) <= maxPrice)
+  }
+
+  if (sort === 'price-asc') {
+    products.sort((a, b) => Number(a.price) - Number(b.price))
+  } else if (sort === 'price-desc') {
+    products.sort((a, b) => Number(b.price) - Number(a.price))
+  } else if (sort === 'newest') {
+    products.sort((a, b) => Number(b.id) - Number(a.id))
+  } else if (sort === 'name-asc') {
+    products.sort((a, b) => String(a.name).localeCompare(String(b.name)))
+  }
+
+  const total = products.length
+  const totalPages = Math.max(1, Math.ceil(total / limit))
+  const normalizedPage = Math.min(page, totalPages)
+  const start = (normalizedPage - 1) * limit
+  const pagedProducts = products.slice(start, start + limit)
+
+  res.json({
+    ok: true,
+    products: pagedProducts,
+    pagination: {
+      total,
+      page: normalizedPage,
+      limit,
+      totalPages,
+    },
+  })
 })
 
 app.get('/api/products/:id', (req, res) => {
@@ -160,5 +218,5 @@ app.delete('/api/cart/:userId/items/:productId', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`sam's cabdels API running on http://localhost:${PORT}`)
+  console.log(`sam's candels API running on http://localhost:${PORT}`)
 })

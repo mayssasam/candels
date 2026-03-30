@@ -1,60 +1,54 @@
-const USERS_KEY = 'candels_users'
 const SESSION_KEY = 'candels_session'
+const API_BASE_URL = 'http://localhost:4000/api'
 
-export function getUsers() {
-  const raw = localStorage.getItem(USERS_KEY)
-  if (!raw) return []
-
+export async function registerUser({ name, email, password }) {
   try {
-    const parsed = JSON.parse(raw)
-    return Array.isArray(parsed) ? parsed : []
+    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password }),
+    })
+
+    const payload = await response.json()
+
+    if (!response.ok) {
+      return { ok: false, message: payload.message || 'Unable to create account.' }
+    }
+
+    return { ok: true, message: payload.message, user: payload.user }
   } catch {
-    return []
+    return { ok: false, message: 'Server unavailable. Please try again.' }
   }
 }
 
-export function saveUsers(users) {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users))
-}
+export async function loginUser({ email, password }) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
 
-export function registerUser({ name, email, password }) {
-  const users = getUsers()
-  const normalizedEmail = email.trim().toLowerCase()
+    const payload = await response.json()
 
-  const exists = users.some((user) => user.email.toLowerCase() === normalizedEmail)
-  if (exists) {
-    return { ok: false, message: 'This email is already registered.' }
+    if (!response.ok) {
+      return { ok: false, message: payload.message || 'Invalid email or password.' }
+    }
+
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify({
+        id: payload.user.id,
+        name: payload.user.name,
+        email: payload.user.email,
+        loggedInAt: Date.now(),
+      }),
+    )
+
+    return { ok: true, message: payload.message, user: payload.user }
+  } catch {
+    return { ok: false, message: 'Server unavailable. Please try again.' }
   }
-
-  users.push({
-    id: Date.now(),
-    name: name.trim(),
-    email: normalizedEmail,
-    password,
-  })
-
-  saveUsers(users)
-  return { ok: true, message: 'Account created successfully.' }
-}
-
-export function loginUser({ email, password }) {
-  const normalizedEmail = email.trim().toLowerCase()
-  const users = getUsers()
-
-  const user = users.find(
-    (candidate) => candidate.email.toLowerCase() === normalizedEmail && candidate.password === password,
-  )
-
-  if (!user) {
-    return { ok: false, message: 'Invalid email or password.' }
-  }
-
-  localStorage.setItem(
-    SESSION_KEY,
-    JSON.stringify({ name: user.name, email: user.email, loggedInAt: Date.now() }),
-  )
-
-  return { ok: true, message: 'Login successful.' }
 }
 
 export function getSessionUser() {

@@ -5,6 +5,12 @@
       "name": "Test User",
       "email": "testuser@example.com",
       "password": "secret123"
+    },
+    {
+      "id": 1774716292624,
+      "name": "mayssa samti",
+      "email": "samti.mayssa@gmail.com",
+      "password": "123456"
     }
   ],
   "products": [
@@ -253,6 +259,13 @@
           "name": "Candle P1",
           "price": 24,
           "image": "/pr/p1.jpg"
+        },
+        {
+          "productId": 2,
+          "quantity": 1,
+          "name": "Candle P2",
+          "price": 25,
+          "image": "/pr/p2.jpg"
         }
       ]
     }
