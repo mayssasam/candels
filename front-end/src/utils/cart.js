@@ -1,5 +1,5 @@
+import { API_BASE_URL } from './api'
 const CART_KEY = 'candels_cart'
-const API_BASE_URL = 'http://localhost:4000/api'
 
 export function getCartItems() {
   const raw = localStorage.getItem(CART_KEY)

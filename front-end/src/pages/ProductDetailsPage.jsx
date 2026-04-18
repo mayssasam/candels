@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-
-const API_BASE_URL = '/api'
+import { API_BASE_URL } from '../utils/api'
 
 function formatPrice(price) {
   if (typeof price === 'number') return `${price} DT`

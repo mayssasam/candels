@@ -4,13 +4,32 @@ const { readDb, writeDb } = require('./db')
 
 const app = express()
 const PORT = process.env.PORT || 4000
+const HOST = process.env.HOST || '0.0.0.0'
+const CORS_ORIGINS = process.env.CORS_ORIGINS || '*'
+
+const allowedOrigins = new Set(
+  CORS_ORIGINS.split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+)
 
 function toPositiveInteger(value, fallback) {
   const parsed = Number.parseInt(value, 10)
   return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback
 }
 
-app.use(cors({ origin: ['http://localhost:5173'] }))
+app.use(cors({
+  origin(origin, callback) {
+    const allowAllOrigins = allowedOrigins.has('*')
+
+    if (allowAllOrigins || !origin || allowedOrigins.has(origin)) {
+      callback(null, true)
+      return
+    }
+
+    callback(new Error('Not allowed by CORS'))
+  },
+}))
 app.use(express.json())
 
 app.get('/api/health', (_req, res) => {
@@ -217,6 +236,6 @@ app.delete('/api/cart/:userId/items/:productId', (req, res) => {
   return res.json({ ok: true, items: cart.items })
 })
 
-app.listen(PORT, () => {
-  console.log(`sam's candels API running on http://localhost:${PORT}`)
+app.listen(PORT, HOST, () => {
+  console.log(`sam's candels API running on http://${HOST}:${PORT}`)
 })

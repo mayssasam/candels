@@ -1,5 +1,6 @@
+import { API_BASE_URL } from './api'
+
 const SESSION_KEY = 'candels_session'
-const API_BASE_URL = 'http://localhost:4000/api'
 
 export async function registerUser({ name, email, password }) {
   try {
